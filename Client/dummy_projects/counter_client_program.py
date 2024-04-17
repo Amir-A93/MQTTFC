@@ -17,10 +17,20 @@ class Counter_Client(PubSub_Base_Executable):
         
     def execute_on_msg (self,client,userdata, msg):
         PubSub_Base_Executable.execute_on_msg(self,client,userdata,msg)
-        msg_parts = str(msg.payload.decode()).split()
-        
-        if msg_parts[0] == 'count':
-            self.count()
+        header_body = str(msg.payload.decode()).split('::')
+        header_parts = header_body[0].split('|')
+            
+                ##IMPORTANT:: Here you extend the message parser to check for the class specific executables
+                ## CHANGE:: --> if msg_parts[0] == <<executable function name>>:
+                    ##Here you execute accordingly, or simply just invoke the executable: example: self.<<executable name>>(parameterst)
+                    ##__________________________________________________________________________________________________________________
+                
+        if(not(header_parts[2] in self.executables)):
+                self.ERROR_executable_not_defined(msg.payload.decode())
+                return
+
+        if header_parts[2] == 'count':
+                self.count()
 
     def count(self):
          for i in range(self.count_cap):
