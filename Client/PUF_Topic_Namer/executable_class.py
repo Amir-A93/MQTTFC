@@ -27,7 +27,7 @@ class PubSub_Base_Executable:
             self.controller_echo_topic = controller_echo_topic
 
 
-            self.client = mqtt.Client()
+            self.client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION1)
             self.client.on_connect = self.on_connect
             self.client.on_message = self.execute_on_msg
             self.client.connect(self.broker_ip,

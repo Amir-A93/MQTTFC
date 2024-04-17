@@ -1,7 +1,0 @@
-Time of Training in seconds: 3
-Train CRP size: 4900
-Test CRP size: 1400
-Test Accuracy: 0.645
-LR: 0.01
-Number of attempts of re-training: 3
-Transfer Learning On: False

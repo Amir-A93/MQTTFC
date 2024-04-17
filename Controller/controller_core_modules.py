@@ -20,7 +20,7 @@ class Server_Controller:
     
     registered_executables = []
     
-    client = mqtt.Client()
+    client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION1)
     MQTT_thread_handler = threading.Thread(target=client.loop_forever)
     
     def __init__(self,log_func):
